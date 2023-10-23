@@ -801,6 +801,7 @@ func (p *Parser) parseTypeExprV3(file *ast.File, typeExpr ast.Expr, ref bool) (*
 	case *ast.Ident:
 		result, err := p.getTypeSchemaV3(expr.Name, file, true)
 		if err != nil {
+			fmt.Println("fail but find by my fix")
 			// Let's find it via StructType
 			if astTypeSpec, ok := expr.Obj.Decl.(*ast.TypeSpec); ok {
 				if astStructType, okX := astTypeSpec.Type.(*ast.StructType); okX {

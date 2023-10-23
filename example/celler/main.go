@@ -4,13 +4,13 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/Constructor-io/swag/v2/example/celler/controller"
+	_ "github.com/Constructor-io/swag/v2/example/celler/docs"
+	"github.com/Constructor-io/swag/v2/example/celler/httputil"
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/swag/v2/example/celler/controller"
-	_ "github.com/swaggo/swag/v2/example/celler/docs"
-	"github.com/swaggo/swag/v2/example/celler/httputil"
 
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	swaggerFiles "github.com/Constructor-io/files"
+	ginSwagger "github.com/Constructor-io/gin-swagger"
 )
 
 //	@title			Swagger Example API

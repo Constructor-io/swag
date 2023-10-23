@@ -15,7 +15,7 @@ import (
 )
 
 // OperationV3 describes a single API operation on a path.
-// For more information: https://github.com/swaggo/swag#api-operation
+// For more information: https://github.com/Constructor-io/swag#api-operation
 type OperationV3 struct {
 	parser              *Parser
 	codeExampleFilesDir string
@@ -710,7 +710,7 @@ func (o *OperationV3) parseAPIObjectSchema(commentLine, schemaType, refType stri
 
 		result := spec.NewSchemaSpec()
 		result.Spec.Type = spec.NewSingleOrArray("array")
-		result.Spec.Items = spec.NewBoolOrSchema(false, schema) //TODO: allowed?
+		result.Spec.Items = spec.NewBoolOrSchema(false, schema) // TODO: allowed?
 		return result, nil
 
 	default:

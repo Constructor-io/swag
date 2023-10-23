@@ -5,7 +5,8 @@ import (
 
 	"github.com/gofrs/uuid"
 	"github.com/shopspring/decimal"
-	"github.com/swaggo/swag/v2/testdata/v3/simple/cross"
+
+	"github.com/Constructor-io/swag/v2/testdata/v3/simple/cross"
 )
 
 type Pet struct {

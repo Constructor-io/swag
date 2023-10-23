@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ghcr.io/swaggo/swag
+          images: ghcr.io/Constructor-io/swag
 
       - name: Build image and push to GitHub Container Registry
         uses: docker/build-push-action@v2
@@ -35,8 +35,8 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/swaggo/swag:latest
-            ghcr.io/swaggo/swag:${{github.ref_name}}
+            ghcr.io/Constructor-io/swag:latest
+            ghcr.io/Constructor-io/swag:${{github.ref_name}}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Image digest

@@ -2,16 +2,16 @@
 
 🌍 *[English](README.md) ∙ [简体中文](README_zh-CN.md) ∙ [Português](README_pt.md)*
 
-<img align="right" width="180px" src="https://raw.githubusercontent.com/swaggo/swag/master/assets/swaggo.png">
+<img align="right" width="180px" src="https://raw.githubusercontent.com/Constructor-io/swag/master/assets/Constructor-io.png">
 
-[![Build Status](https://github.com/swaggo/swag/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/features/actions)
-[![Coverage Status](https://img.shields.io/codecov/c/github/swaggo/swag/master.svg)](https://codecov.io/gh/swaggo/swag)
-[![Go Report Card](https://goreportcard.com/badge/github.com/swaggo/swag)](https://goreportcard.com/report/github.com/swaggo/swag)
-[![codebeat badge](https://codebeat.co/badges/71e2f5e5-9e6b-405d-baf9-7cc8b5037330)](https://codebeat.co/projects/github-com-swaggo-swag-master)
-[![Go Doc](https://godoc.org/github.com/swaggo/swagg?status.svg)](https://godoc.org/github.com/swaggo/swag)
+[![Build Status](https://github.com/Constructor-io/swag/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/features/actions)
+[![Coverage Status](https://img.shields.io/codecov/c/github/Constructor-io/swag/master.svg)](https://codecov.io/gh/Constructor-io/swag)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Constructor-io/swag)](https://goreportcard.com/report/github.com/Constructor-io/swag)
+[![codebeat badge](https://codebeat.co/badges/71e2f5e5-9e6b-405d-baf9-7cc8b5037330)](https://codebeat.co/projects/github-com-Constructor-io-swag-master)
+[![Go Doc](https://godoc.org/github.com/Constructor-io/swagg?status.svg)](https://godoc.org/github.com/Constructor-io/swag)
 [![Backers on Open Collective](https://opencollective.com/swag/backers/badge.svg)](#backers)
-[![Sponsors on Open Collective](https://opencollective.com/swag/sponsors/badge.svg)](#sponsors) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fswaggo%2Fswag.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fswaggo%2Fswag?ref=badge_shield)
-[![Release](https://img.shields.io/github/release/swaggo/swag.svg?style=flat-square)](https://github.com/swaggo/swag/releases)
+[![Sponsors on Open Collective](https://opencollective.com/swag/sponsors/badge.svg)](#sponsors) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FConstructor-io%2Fswag.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FConstructor-io%2Fswag?ref=badge_shield)
+[![Release](https://img.shields.io/github/release/Constructor-io/swag.svg?style=flat-square)](https://github.com/Constructor-io/swag/releases)
 
 Swag converte anotações Go para Documentação Swagger 2.0. Criámos uma variedade de plugins para populares [Go web frameworks](#supported-web-frameworks). Isto permite uma integração rápida com um projecto Go existente (utilizando a Swagger UI).
 
@@ -51,11 +51,11 @@ Swag converte anotações Go para Documentação Swagger 2.0. Criámos uma varie
 
 2. Descarregue o swag utilizando:
 ```sh
-go install github.com/swaggo/swag/cmd/swag@latest
+go install github.com/Constructor-io/swag/cmd/swag@latest
 ```
 Para construir a partir da fonte é necessário [Go](https://golang.org/dl/) (1.17 ou mais recente).
 
-Ou descarregar um binário pré-compilado a partir da [página de lançamento](https://github.com/swaggo/swag/releases).
+Ou descarregar um binário pré-compilado a partir da [página de lançamento](https://github.com/Constructor-io/swag/releases).
 
 3. Executar `swag init` na pasta raiz do projecto que contém o ficheiro `main.go`. Isto irá analisar os seus comentários e gerar os ficheiros necessários (pasta `docs` e `docs/docs.go`).
 ```sh
@@ -119,12 +119,12 @@ OPÇÕES:
 
 ## Estruturas Web Suportadas
 
-- [gin](http://github.com/swaggo/gin-swagger)
-- [echo](http://github.com/swaggo/echo-swagger)
-- [buffalo](https://github.com/swaggo/buffalo-swagger)
-- [net/http](https://github.com/swaggo/http-swagger)
-- [gorilla/mux](https://github.com/swaggo/http-swagger)
-- [go-chi/chi](https://github.com/swaggo/http-swagger)
+- [gin](http://github.com/Constructor-io/gin-swagger)
+- [echo](http://github.com/Constructor-io/echo-swagger)
+- [buffalo](https://github.com/Constructor-io/buffalo-swagger)
+- [net/http](https://github.com/Constructor-io/http-swagger)
+- [gorilla/mux](https://github.com/Constructor-io/http-swagger)
+- [go-chi/chi](https://github.com/Constructor-io/http-swagger)
 - [flamingo](https://github.com/i-love-flamingo/swagger)
 - [fiber](https://github.com/gofiber/swagger)
 - [atreugo](https://github.com/Nerzal/atreugo-swagger)
@@ -132,12 +132,12 @@ OPÇÕES:
 
 ## Como utilizá-lo com Gin
 
-Encontrar o código fonte de exemplo [aqui](https://github.com/swaggo/swag/tree/master/example/celler).
+Encontrar o código fonte de exemplo [aqui](https://github.com/Constructor-io/swag/tree/master/example/celler).
 
 1. Depois de utilizar `swag init` para gerar os documentos Swagger 2.0, importar os seguintes pacotes:
 ```go
-import "github.com/swaggo/gin-swagger" // gin-swagger middleware
-import "github.com/swaggo/files" // swagger embed files
+import "github.com/Constructor-io/gin-swagger" // gin-swagger middleware
+import "github.com/Constructor-io/files" // swagger embed files
 ```
 
 2. Adicionar [Informações Gerais API](#general-api-info) anotações em código `main.go`:
@@ -194,8 +194,8 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/swaggo/files"
-	"github.com/swaggo/gin-swagger"
+	"github.com/Constructor-io/files"
+	"github.com/Constructor-io/gin-swagger"
 
 	"./docs" // docs is generated by Swag CLI, you have to import it.
 )
@@ -236,8 +236,8 @@ import (
     "strconv"
 
     "github.com/gin-gonic/gin"
-    "github.com/swaggo/swag/example/celler/httputil"
-    "github.com/swaggo/swag/example/celler/model"
+    "github.com/Constructor-io/swag/example/celler/httputil"
+    "github.com/Constructor-io/swag/example/celler/model"
 )
 
 // ShowAccount godoc
@@ -297,12 +297,12 @@ swag init
 
 4. Execute a sua aplicação, e navegue para http://localhost:8080/swagger/index.html. Verá os documentos Swagger 2.0 Api, como mostrado abaixo:
 
-![swagger_index.html](https://raw.githubusercontent.com/swaggo/swag/master/assets/swagger-image.png)
+![swagger_index.html](https://raw.githubusercontent.com/Constructor-io/swag/master/assets/swagger-image.png)
 
 ## O formatador de swag
 
 Os Swag Comments podem ser formatados automaticamente, assim como 'go fmt'.
-Encontre o resultado da formatação [aqui](https://github.com/swaggo/swag/tree/master/example/celler).
+Encontre o resultado da formatação [aqui](https://github.com/Constructor-io/swag/tree/master/example/celler).
 
 Usage:
 ```shell
@@ -361,7 +361,7 @@ func (c *Controller) ListAccounts(ctx *gin.Context) {
 ## Informações Gerais API
 
 **Exemplo**
-[celler/main.go](https://github.com/swaggo/swag/blob/master/example/celler/main.go)
+[celler/main.go](https://github.com/Constructor-io/swag/blob/master/example/celler/main.go)
 
 | anotação | descrição | exemplo |
 |-------------|--------------------------------------------|---------------------------------|
@@ -402,7 +402,7 @@ Quando uma pequena sequência na sua documentação é insuficiente, ou precisa 
 ## Operação API
 
 **Exemplo**
-[celler/controller](https://github.com/swaggo/swag/tree/master/example/celler/controller)
+[celler/controller](https://github.com/Constructor-io/swag/tree/master/example/celler/controller)
 
 | anotação | descrição |
 |-------------|----------------------------------------------------------------------------------------------------------------------------|
@@ -688,7 +688,7 @@ type Account struct {
 }
 ```
 
-[#708](https://github.com/swaggo/swag/issues/708) O analisador trata apenas de comentários estruturais a partir de `@Description` attribute.
+[#708](https://github.com/Constructor-io/swag/issues/708) O analisador trata apenas de comentários estruturais a partir de `@Description` attribute.
 
 Assim, gerou o doc. de swagger como se segue:
 ```json
@@ -709,7 +709,7 @@ Assim, gerou o doc. de swagger como se segue:
 ```
 
 ### Usar etiqueta do tipo swaggertype para suportar o tipo personalizado
-[#201](https://github.com/swaggo/swag/issues/201#issuecomment-475479409)
+[#201](https://github.com/Constructor-io/swag/issues/201#issuecomment-475479409)
 
 ```go
 type TimestampTime struct {
@@ -745,7 +745,7 @@ type Account struct {
 }
 ```
 
-[#379](https://github.com/swaggo/swag/issues/379)
+[#379](https://github.com/Constructor-io/swag/issues/379)
 ```go
 type CerticateKeyPair struct {
 	Crt []byte `json:"crt" swaggertype:"string" format:"base64" example:"U3dhZ2dlciByb2Nrcw=="`
@@ -776,7 +776,7 @@ generated swagger doc as follows:
 
 Se estiver a utilizar ficheiros gerados, as etiquetas [`swaggertype`](#use-swaggertype-tag-to-supported-custom-type) ou `swaggerignore` podem não ser possíveis.
 
-Ao passar um mapeamento para swag com `--overridesFile` pode dizer swag para utilizar um tipo no lugar de outro onde quer que apareça. Por defeito, se um ficheiro `.swaggo` estiver presente no directório actual, será utilizado.
+Ao passar um mapeamento para swag com `--overridesFile` pode dizer swag para utilizar um tipo no lugar de outro onde quer que apareça. Por defeito, se um ficheiro `.Constructor-io` estiver presente no directório actual, será utilizado.
 
 Go code:
 ```go
@@ -786,7 +786,7 @@ type MyStruct struct {
 }
 ```
 
-`.swaggo`:
+`.Constructor-io`:
 ```
 // Substituir todos os NullInt64 por int
 replace database/sql.NullInt64 int
@@ -912,7 +912,7 @@ Este projecto foi inspirado por [yvasiyarov/swagger](https://github.com/yvasiyar
 ## Contribuidores
 
 Este projecto existe graças a todas as pessoas que contribuem. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/swaggo/swag/graphs/contributors"><img src="https://opencollective.com/swag/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/Constructor-io/swag/graphs/contributors"><img src="https://opencollective.com/swag/contributors.svg?width=890&button=false" /></a>
 
 
 ## Apoios
@@ -940,4 +940,4 @@ Apoiar este projecto tornando-se um patrocinador. O seu logótipo aparecerá aqu
 
 
 ## Licença
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fswaggo%2Fswag.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fswaggo%2Fswag?ref=badge_large)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FConstructor-io%2Fswag.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FConstructor-io%2Fswag?ref=badge_large)

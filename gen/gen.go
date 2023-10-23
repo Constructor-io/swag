@@ -21,14 +21,15 @@ import (
 	v2 "github.com/go-openapi/spec"
 	v3 "github.com/sv-tools/openapi/spec"
 
-	"github.com/swaggo/swag/v2"
 	"sigs.k8s.io/yaml"
+
+	"github.com/Constructor-io/swag/v2"
 )
 
 var open = os.Open
 
 // DefaultOverridesFile is the location swagger will look for type overrides.
-const DefaultOverridesFile = ".swaggo"
+const DefaultOverridesFile = ".Constructor-io"
 
 type genTypeWriter func(*Config, interface{}) error
 

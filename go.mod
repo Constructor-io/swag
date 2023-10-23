@@ -9,7 +9,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/stretchr/testify v1.8.2
 	github.com/sv-tools/openapi v0.2.1
-	github.com/swaggo/swag/v2 v2.0.0-rc3
+	github.com/Constructor-io/swag/v2 v2.0.0-rc3
 	golang.org/x/tools v0.8.0
 	sigs.k8s.io/yaml v1.3.0
 )

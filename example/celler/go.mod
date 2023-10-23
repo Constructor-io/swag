@@ -1,13 +1,13 @@
-module github.com/swaggo/swag/example/celler
+module github.com/Constructor-io/swag/example/celler
 
 go 1.17
 
 require (
 	github.com/gin-gonic/gin v1.7.7
 	github.com/gofrs/uuid v4.2.0+incompatible
-	github.com/swaggo/files v0.0.0-20210815190702-a29dd2bc99b2
-	github.com/swaggo/gin-swagger v1.4.2
-	github.com/swaggo/swag/v2 v2.0.0-beta
+	github.com/Constructor-io/files v0.0.0-20210815190702-a29dd2bc99b2
+	github.com/Constructor-io/gin-swagger v1.4.2
+	github.com/Constructor-io/swag/v2 v2.0.0-beta
 )
 
 require (

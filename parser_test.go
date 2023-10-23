@@ -2142,9 +2142,9 @@ func TestParseTypeOverrides(t *testing.T) {
 
 	searchDir := "testdata/global_override"
 	p := New(SetOverrides(map[string]string{
-		"github.com/swaggo/swag/v2/testdata/global_override/types.Application":  "string",
-		"github.com/swaggo/swag/v2/testdata/global_override/types.Application2": "github.com/swaggo/swag/v2/testdata/global_override/othertypes.Application",
-		"github.com/swaggo/swag/v2/testdata/global_override/types.ShouldSkip":   "",
+		"github.com/Constructor-io/swag/v2/testdata/global_override/types.Application":  "string",
+		"github.com/Constructor-io/swag/v2/testdata/global_override/types.Application2": "github.com/Constructor-io/swag/v2/testdata/global_override/othertypes.Application",
+		"github.com/Constructor-io/swag/v2/testdata/global_override/types.ShouldSkip":   "",
 	}))
 	err := p.ParseAPI(searchDir, mainAPIFile, defaultParseDepth)
 	assert.NoError(t, err)
@@ -2153,7 +2153,7 @@ func TestParseTypeOverrides(t *testing.T) {
 	assert.NoError(t, err)
 
 	b, _ := json.MarshalIndent(p.swagger, "", "    ")
-	//windows will fail: \r\n \n
+	// windows will fail: \r\n \n
 	assert.Equal(t, string(expected), string(b))
 }
 
@@ -2219,7 +2219,7 @@ func TestParseExternalModels(t *testing.T) {
 	err := p.ParseAPI(searchDir, mainAPIFile, defaultParseDepth)
 	assert.NoError(t, err)
 	b, _ := json.MarshalIndent(p.swagger, "", "    ")
-	//ioutil.WriteFile("./testdata/external_models/main/expected.json",b,0777)
+	// ioutil.WriteFile("./testdata/external_models/main/expected.json",b,0777)
 	expected, err := os.ReadFile(filepath.Join(searchDir, "expected.json"))
 	assert.NoError(t, err)
 	assert.Equal(t, string(expected), string(b))

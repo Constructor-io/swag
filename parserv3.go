@@ -128,7 +128,7 @@ func (p *Parser) parseGeneralAPIInfoV3(comments []string) error {
 			}
 
 			tag.Spec.ExternalDocs.Spec.Description = value
-		case secBasicAttr, secAPIKeyAttr, secApplicationAttr, secImplicitAttr, secPasswordAttr, secAccessCodeAttr:
+		case secBasicAttr, secBearerAttr, secAPIKeyAttr, secApplicationAttr, secImplicitAttr, secPasswordAttr, secAccessCodeAttr:
 			key, scheme, err := parseSecAttributesV3(attribute, comments, &line)
 			if err != nil {
 				return err
@@ -343,6 +343,12 @@ func parseSecAttributesV3(context string, lines []string, index *int) (string, *
 			Scheme: "basic",
 		}
 		return "basic", &scheme, nil
+	case secBearerAttr:
+		scheme := spec.SecurityScheme{
+			Type:   "http",
+			Scheme: "bearer",
+		}
+		return "bearer", &scheme, nil
 	case secAPIKeyAttr:
 		search = []string{in, name}
 	case secApplicationAttr, secPasswordAttr:
@@ -386,7 +392,7 @@ func parseSecAttributesV3(context string, lines []string, index *int) (string, *
 		}
 
 		if isExists {
-			scopes[securityAttr[len(scopeAttrPrefix):]] = v[len(securityAttr):]
+			scopes[securityAttr[len(scopeAttrPrefix):]] = strings.TrimSpace(v[len(securityAttr):])
 		}
 
 		if strings.HasPrefix(securityAttr, "@x-") {
@@ -477,8 +483,9 @@ func parseSecAttributesV3(context string, lines []string, index *int) (string, *
 
 func getSecurityDefinitionKey(lines []string) string {
 	for _, line := range lines {
+		line = strings.TrimSpace(line)
 		if strings.HasPrefix(strings.ToLower(line), "@securitydefinitions") {
-			splittedLine := strings.Split(line, " ")
+			splittedLine := strings.Fields(line)
 			return splittedLine[len(splittedLine)-1]
 		}
 	}
@@ -794,6 +801,16 @@ func (p *Parser) parseTypeExprV3(file *ast.File, typeExpr ast.Expr, ref bool) (*
 	case *ast.Ident:
 		result, err := p.getTypeSchemaV3(expr.Name, file, true)
 		if err != nil {
+			// Let's find it via StructType
+			if astTypeSpec, ok := expr.Obj.Decl.(*ast.TypeSpec); ok {
+				if astStructType, okX := astTypeSpec.Type.(*ast.StructType); okX {
+					resultX, errX := p.parseStructV3(file, astStructType.Fields)
+					if errX != nil {
+						return nil, errors.Wrap(err, errMessage)
+					}
+					return resultX, nil
+				}
+			}
 			return nil, errors.Wrap(err, errMessage)
 		}
 
@@ -955,7 +972,19 @@ func (p *Parser) parseStructFieldV3(file *ast.File, field *ast.Field) (map[strin
 			// named type
 			schema, err = p.getTypeSchemaV3(typeName, file, true)
 			if err != nil {
-				return nil, nil, err
+				parseTypeSpecSucc := false
+				if astIdent, ok := field.Type.(*ast.Ident); ok {
+					if astDecl, ok := astIdent.Obj.Decl.(*ast.TypeSpec); ok {
+						resX, errX := p.parseTypeExprV3(file, astDecl.Type, false)
+						if errX == nil {
+							schema = resX
+							parseTypeSpecSucc = true
+						}
+					}
+				}
+				if !parseTypeSpecSucc {
+					return nil, nil, err
+				}
 			}
 
 		} else {

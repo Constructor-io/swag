@@ -520,7 +520,7 @@ func (o *OperationV3) parseParamAttribute(comment, objectType, schemaType string
 		case schemaExampleTag:
 			err = setSchemaExampleV3(param.Schema.Spec, schemaType, attr)
 		case schemaExamplesTag:
-			err = setSchemaExamplesV3(param, schemaType, attr)
+			err = setSchemaExamplesV3Param(param, attr)
 		case extensionsTag:
 			param.Schema.Spec.Extensions = setExtensionParam(attr)
 		case collectionFormatTag:
@@ -602,14 +602,25 @@ func setSchemaExampleV3(param *spec.Schema, schemaType string, value string) err
 	return nil
 }
 
-func setSchemaExamplesV3(param *spec.Parameter, schemaType string, value string) error {
+func setSchemaExamplesV3Param(param *spec.Parameter, value string) error {
 	examples := map[string]*spec.RefOrSpec[spec.Extendable[spec.Example]]{}
 	err := json.Unmarshal([]byte(value), &examples)
 	if err != nil {
-		return fmt.Errorf("setSchemaExamplesV3 json unmarshal: %w", err)
+		return fmt.Errorf("setSchemaExamplesV3Param json unmarshal: %w", err)
 	}
 
 	param.Examples = examples
+	return nil
+}
+
+func setSchemaExamplesV3Header(header *spec.Header, value string) error {
+	examples := map[string]*spec.RefOrSpec[spec.Extendable[spec.Example]]{}
+	err := json.Unmarshal([]byte(value), &examples)
+	if err != nil {
+		return fmt.Errorf("setSchemaExamplesV3Header json unmarshal: %w", err)
+	}
+
+	header.Examples = examples
 	return nil
 }
 
@@ -856,7 +867,7 @@ func parseObjectSchemaV3(parser *Parser, refType string, astFile *ast.File) (*sp
 
 // ParseResponseHeaderComment parses comment for given `response header` comment string.
 func (o *OperationV3) ParseResponseHeaderComment(commentLine string, _ *ast.File) error {
-	matches := responsePattern.FindStringSubmatch(commentLine)
+	matches := headerPattern.FindStringSubmatch(commentLine)
 	if len(matches) != 5 {
 		return fmt.Errorf("can not parse response comment \"%s\"", commentLine)
 	}
@@ -864,6 +875,12 @@ func (o *OperationV3) ParseResponseHeaderComment(commentLine string, _ *ast.File
 	header := newHeaderSpecV3(strings.Trim(matches[2], "{}"), strings.Trim(matches[4], "\""))
 
 	headerKey := strings.TrimSpace(matches[3])
+
+	re := regexAttributes[schemaExamplesTag]
+	found, err := findAttr(re, commentLine)
+	if err == nil {
+		err = setSchemaExamplesV3Header(header.Spec.Spec, found)
+	}
 
 	if strings.EqualFold(matches[1], "all") {
 		if o.Responses.Spec.Default != nil {

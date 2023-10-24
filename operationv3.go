@@ -624,6 +624,11 @@ func setSchemaExamplesV3Header(header *spec.Header, value string) error {
 	return nil
 }
 
+func setSchemaExampleV3Header(header *spec.Header, value string) error {
+	header.Example = value
+	return nil
+}
+
 func setExampleParameterV3(param *spec.Parameter, schemaType string, value string) error {
 	val, err := defineType(schemaType, value)
 	if err != nil {
@@ -880,6 +885,12 @@ func (o *OperationV3) ParseResponseHeaderComment(commentLine string, _ *ast.File
 	found, err := findAttr(re, commentLine)
 	if err == nil {
 		err = setSchemaExamplesV3Header(header.Spec.Spec, found)
+	}
+
+	re = regexAttributes[schemaExampleTag]
+	found, err = findAttr(re, commentLine)
+	if err == nil {
+		err = setSchemaExampleV3Header(header.Spec.Spec, found)
 	}
 
 	if strings.EqualFold(matches[1], "all") {

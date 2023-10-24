@@ -412,6 +412,7 @@ const (
 	enumsTag            = "enums"
 	exampleTag          = "example"
 	schemaExampleTag    = "schemaExample"
+	schemaExamplesTag   = "schemaExamples"
 	formatTag           = "format"
 	validateTag         = "validate"
 	minimumTag          = "minimum"
@@ -448,6 +449,8 @@ var regexAttributes = map[string]*regexp.Regexp{
 	exampleTag: regexp.MustCompile(`(?i)\s+example\(.*\)`),
 	// schemaExample(0)
 	schemaExampleTag: regexp.MustCompile(`(?i)\s+schemaExample\(.*\)`),
+	// schemaExamples(0)
+	schemaExamplesTag: regexp.MustCompile(`(?i)\s+schemaExamples\(.*\)`),
 }
 
 func (operation *Operation) parseParamAttribute(comment, objectType, schemaType string, param *spec.Parameter) error {

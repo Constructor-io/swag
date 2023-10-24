@@ -519,6 +519,8 @@ func (o *OperationV3) parseParamAttribute(comment, objectType, schemaType string
 			param.Example = val
 		case schemaExampleTag:
 			err = setSchemaExampleV3(param.Schema.Spec, schemaType, attr)
+		case schemaExamplesTag:
+			err = setSchemaExamplesV3(param, schemaType, attr)
 		case extensionsTag:
 			param.Schema.Spec.Extensions = setExtensionParam(attr)
 		case collectionFormatTag:
@@ -597,6 +599,17 @@ func setSchemaExampleV3(param *spec.Schema, schemaType string, value string) err
 		param.Example = val
 	}
 
+	return nil
+}
+
+func setSchemaExamplesV3(param *spec.Parameter, schemaType string, value string) error {
+	examples := map[string]*spec.RefOrSpec[spec.Extendable[spec.Example]]{}
+	err := json.Unmarshal([]byte(value), &examples)
+	if err != nil {
+		return fmt.Errorf("setSchemaExamplesV3 json unmarshal: %w", err)
+	}
+
+	param.Examples = examples
 	return nil
 }
 
